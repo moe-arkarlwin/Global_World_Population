@@ -6,7 +6,7 @@
 
     <groupId>com.globalworldpopulation</groupId>
     <artifactId>Global_World_Population</artifactId>
-    <version>0.1.0.2</version>
+    <version>0.1.0.3</version>
 
     <properties>
         <maven.compiler.source>24</maven.compiler.source>

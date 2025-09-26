@@ -17,3 +17,5 @@ A Git workflow is a defined process that guides how developers collaborate, mana
 [![LICENSE](https://img.shields.io/github/license/moe-arkarlwin/Global_World_Population.svg?style=flat-square)](https://github.com/moe-arkarlwin/Global_World_Population/blob/master/LICENSE)
 
 [![Releases](https://img.shields.io/github/release/moe-arkarlwin/Global_World_Population/all.svg?style=flat-square)](https://github.com/moe-arkarlwin/Global_World_Population/releases)
+
+[![codecov](https://codecov.io/github/moe-arkarlwin/Global_World_Population/graph/badge.svg?token=CRC7UAM7HH)](https://codecov.io/github/moe-arkarlwin/Global_World_Population)

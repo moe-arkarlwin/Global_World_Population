@@ -305,7 +305,8 @@ public class MySQL_Test {
         if(args.length < 1){
             m.connect("localhost:33060", 0);
         }else{
-            m.connect("db:3306", 10000);
+//            m.connect("db:3306", 10000);
+            m.connect(args[0], Integer.parseInt(args[1]));
         }
 
 //        Employee emp = m.getEmployee(255530);
@@ -314,13 +315,16 @@ public class MySQL_Test {
 
 //        ArrayList<Employee> employees = m.getAllSalaries();
 
-        Department dept = m.getDepartment("Development");
+//        Department dept = m.getDepartment("Development");
         // Extract employee salary information
-        ArrayList<Employee> employees = m.getSalariesByDepartment(dept);
+//        ArrayList<Employee> employees = m.getSalariesByDepartment(dept);
+
+        ArrayList<Employee> employees = m.getSalariesByRole("Manager");
+        m.outputEmployees(employees, "ManagerSalaries.md");
 
         // Test the size of the returned data - should be 240124
 //        System.out.println(employees.size());
-        m.printSalaries(employees);
+//        m.printSalaries(employees);
 
         // Disconnect from database
         m.disconnect();

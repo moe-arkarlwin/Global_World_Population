@@ -22,4 +22,17 @@ class MySQL_Test_Integration_Test {
         assertEquals("Ronghao", emp.first_name);
         assertEquals("Garigliano", emp.last_name);
     }
+
+    @Test
+    void testAddEmployee() {
+        Employee emp = new Employee();
+        emp.emp_no = 500000;
+        emp.first_name = "Moe Arkar";
+        emp.last_name = "Lwin";
+        mytest.addEmployee(emp);
+        emp = mytest.getEmployee(500000);
+        assertEquals(emp.emp_no, 500000);
+        assertEquals(emp.first_name, "Moe Arkar");
+        assertEquals(emp.last_name, "Lwin");
+    }
 }

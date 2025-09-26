@@ -1,11 +1,12 @@
 name: A workflow for my Global World Population App
-on:
-  push:
-    branches:
-      - master
+on: push
+#on:
+#  push:
+#    branches:
+#      - master
 
-permissions:
-  contents: write
+#permissions:
+#  contents: write
 
 jobs:
   UnitTests:

@@ -114,6 +114,7 @@ public class MySQL_Test {
      * Gets all the current employees and salaries.
      * @return A list of all employees and salaries, or null if there is an error.
      */
+    @RequestMapping("salaries")
     public ArrayList<Employee> getAllSalaries() {
         try {
             // Create an SQL statement
@@ -170,7 +171,9 @@ public class MySQL_Test {
         }
     }
 
-    public Department getDepartment(String dept_name) {
+    @RequestMapping("department")
+    public Department getDepartment(@RequestParam(value = "dept") String dept_name) {
+//    public Department getDepartment(String dept_name) {
         try {
             PreparedStatement pstmt = con.prepareStatement("SELECT dept_no, dept_name " +
                     "FROM departments WHERE dept_name = ?");
@@ -191,7 +194,9 @@ public class MySQL_Test {
         }
     }
 
-    public ArrayList<Employee> getSalariesByDepartment(Department dept) {
+    @RequestMapping("salaries_department")
+    public ArrayList<Employee> getSalariesByDepartment(@RequestParam(value = "dept") Department dept) {
+//    public ArrayList<Employee> getSalariesByDepartment(Department dept) {
         try {
             PreparedStatement pstmt = con.prepareStatement("SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
                     + "FROM employees, salaries, dept_emp "

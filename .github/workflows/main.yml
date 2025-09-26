@@ -35,9 +35,8 @@ jobs:
         run: |
           docker compose up -d db
           mvn -Dtest=com.globalworldpopulation.MySQL_Test_Integration_Test test
-          docker stop employees
-          docker rm employees
-          docker image rm database
+      - name: Shutdown
+        run: docker compose down
 
   build:
     name: Build and Start Using docker-compose

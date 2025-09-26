@@ -212,9 +212,9 @@ public class MySQL_Test {
 
         // Connect to database
         if(args.length < 1){
-            m.connect("localhost:33060", 10000);
+            m.connect("localhost:33060", 0);
         }else{
-            m.connect(args[0], Integer.parseInt(args[1]));
+            m.connect("db:3306", 10000);
         }
 
 //        Employee emp = m.getEmployee(255530);

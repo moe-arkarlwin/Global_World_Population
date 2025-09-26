@@ -6,7 +6,7 @@
 
     <groupId>com.globalworldpopulation</groupId>
     <artifactId>Global_World_Population</artifactId>
-    <version>0.1.0.4</version>
+    <version>0.1.0.5</version>
 
     <properties>
         <maven.compiler.source>24</maven.compiler.source>
@@ -48,6 +48,18 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <!-- skip building the default-jar-->
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>

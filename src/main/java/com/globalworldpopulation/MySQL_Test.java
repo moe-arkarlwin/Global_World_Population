@@ -1,5 +1,11 @@
 package com.globalworldpopulation;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,17 +13,19 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+@SpringBootApplication
+@RestController
 public class MySQL_Test {
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    private static Connection con = null;
 
     /**
      * Connect to the MySQL database.
      */
-    public void connect(String location, int delay) {
+    public static void connect(String location) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -52,7 +60,7 @@ public class MySQL_Test {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect() {
+    public static void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -64,7 +72,9 @@ public class MySQL_Test {
         }
     }
 
-    public Employee getEmployee(int ID) {
+    @RequestMapping("employee")
+    public Employee getEmployee(@RequestParam(value = "id") String ID) {
+//    public Employee getEmployee(int ID) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -299,15 +309,24 @@ public class MySQL_Test {
 
     public static void main(String[] args) {
         // Create new Application
-        MySQL_Test m = new MySQL_Test();
+//        MySQL_Test m = new MySQL_Test();
+
+        if (args.length < 1) {
+            connect("localhost:33060");
+        }
+        else {
+            connect(args[0]);
+        }
+
+        SpringApplication.run(MySQL_Test.class, args);
 
         // Connect to database
-        if(args.length < 1){
-            m.connect("localhost:33060", 0);
-        }else{
-//            m.connect("db:3306", 10000);
-            m.connect(args[0], Integer.parseInt(args[1]));
-        }
+//        if(args.length < 1){
+//            m.connect("localhost:33060", 0);
+//        }else{
+////            m.connect("db:3306", 10000);
+//            m.connect(args[0], Integer.parseInt(args[1]));
+//        }
 
 //        Employee emp = m.getEmployee(255530);
         // Display results
@@ -319,14 +338,14 @@ public class MySQL_Test {
         // Extract employee salary information
 //        ArrayList<Employee> employees = m.getSalariesByDepartment(dept);
 
-        ArrayList<Employee> employees = m.getSalariesByRole("Manager");
-        m.outputEmployees(employees, "ManagerSalaries.md");
+//        ArrayList<Employee> employees = m.getSalariesByRole("Manager");
+//        m.outputEmployees(employees, "ManagerSalaries.md");
 
         // Test the size of the returned data - should be 240124
 //        System.out.println(employees.size());
 //        m.printSalaries(employees);
 
         // Disconnect from database
-        m.disconnect();
+        //disconnect();
     }
 }

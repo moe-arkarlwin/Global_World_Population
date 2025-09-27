@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Salaries by Title</title>
+        <title>Salaries by Department</title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
         <style>
@@ -64,6 +64,10 @@
 
             // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
             $(".showData").html(table);
-        });
+        })
+            .fail(function(jqxhr, textStatus, error) {
+                $(".showData").html("Error: " + textStatus + ", " + error);
+                console.error("Request Failed: ", jqxhr.responseText);
+            });
     </script>
 </html>

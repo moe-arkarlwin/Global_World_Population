@@ -1,8 +1,13 @@
-version: '3'
+version: '3.8'
+
 services:
   # Application Dockerfile is in same folder which is .
   app:
     build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
 
   # db is is db folder
   db:
@@ -18,3 +23,7 @@ services:
   # Web Dockerfile is in web folder .
   web:
     build: web/.
+    ports:
+      - "80:80"
+    depends_on:
+      - app

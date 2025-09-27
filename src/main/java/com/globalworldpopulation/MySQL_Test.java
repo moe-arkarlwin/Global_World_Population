@@ -195,15 +195,16 @@ public class MySQL_Test {
     }
 
     @RequestMapping("salaries_department")
-    public ArrayList<Employee> getSalariesByDepartment(@RequestParam(value = "dept") Department dept) {
+    public ArrayList<Employee> getSalariesByDepartment(@RequestParam(value = "dept") String dept) {
 //    public ArrayList<Employee> getSalariesByDepartment(Department dept) {
         try {
             PreparedStatement pstmt = con.prepareStatement("SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
-                    + "FROM employees, salaries, dept_emp "
+                    + "FROM employees, salaries, dept_emp, departments "
                     + "WHERE employees.emp_no = salaries.emp_no AND salaries.to_date = '9999-01-01' "
-                    + "AND employees.emp_no = dept_emp.emp_no AND dept_emp.dept_no = ? "
+                    + "AND employees.emp_no = dept_emp.emp_no AND dept_emp.dept_no = departments.dept_no "
+                    + "AND departments.dept_name = ? "
                     + "ORDER BY employees.emp_no ASC");
-            pstmt.setString(1, dept.getDept_no());
+            pstmt.setString(1, dept);
             // Execute SQL statement
             ResultSet rset = pstmt.executeQuery();
             // Extract employee information
